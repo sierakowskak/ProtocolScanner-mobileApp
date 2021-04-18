@@ -13,8 +13,7 @@ export default class HomeScreen extends PureComponent {
     }
 
     navigateToCustomCrop = data => {
-        console.log('nawigacja do customa')
-        // this.props.navigation.navigate('CustomCrop', data);
+        this.props.navigation.navigate('CustomCrop', data);
     }
 
     takePhotoFromCamera = () => {
@@ -36,16 +35,15 @@ export default class HomeScreen extends PureComponent {
             height: 400,
             cropping: false,
         }).then(image => {
-            // TODO jak wyzej
-            console.log(image);
-            let imageData = [image]
-            if (imageData.length > 0) {
-                this.navigateToCustomCrop(imageData);
-            }
+            this.navigateToCustomCrop(image.path);
         })
             .catch(err => {
                 console.log(' Error fetching images from gallery ', err);
             });
+    }
+
+    navigateToNamesForm = () => {
+        this.props.navigation.navigate('NamesForm');
     }
 
 
@@ -59,7 +57,7 @@ export default class HomeScreen extends PureComponent {
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity onPress={() => this.takePhotoFromCamera()} style={styles.button}><Text style={styles.textIn}>Camera</Text></TouchableOpacity>
                     <TouchableOpacity onPress={() => this.choosePhotoFromGallery()} style={styles.button}><Text style={styles.textIn}>Pick photo</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.button}><Text style={styles.textIn}>Sign In</Text></TouchableOpacity>
+                    <TouchableOpacity onPress={() => this.navigateToNamesForm()} style={styles.button}><Text style={styles.textIn}>Names</Text></TouchableOpacity>
                 </View>
             </View>
         )

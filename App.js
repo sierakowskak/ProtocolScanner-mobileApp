@@ -12,11 +12,11 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-
-// import CameraScreen from './screens/CameraScreen';
 import HomeScreen from './screens/HomeScreen';
-// import PhotoPickerScreen from './screens/PhotoPickerScreen';
 import SettingsButton from './components/SettingsButton';
+import CustomCrop from './screens/CustomCrop';
+import CroppedImageScreen from './screens/CroppedImageScreen';
+import NamesForm from './components/NamesForm';
 
 const Stack = createStackNavigator();
 
@@ -37,13 +37,17 @@ const App = () => {
               headerTitleStyle: { fontSize: 10 } ,
             
               headerRight: () => (
-                <SettingsButton/>)
+                <SettingsButton/>
+                )
             }}
               
             
             />
-          {/* <Stack.Screen name="Camera" component={CameraScreen} />
-          <Stack.Screen name="PhotoPicker" component={PhotoPickerScreen} /> */}
+
+          
+          <Stack.Screen name="NamesForm" component={NamesForm} />
+          <Stack.Screen name="CustomCrop" component={CustomCrop} />
+          <Stack.Screen name="CroppedImageScreen" component={CroppedImageScreen} />
         </Stack.Navigator>
       </NavigationContainer>
 
