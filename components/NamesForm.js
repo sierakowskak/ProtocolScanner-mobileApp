@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
-import MultipleTags from 'react-native-multiple-tags';
+import NumericInput from 'react-native-numeric-input'
 
 
 const ids = [
@@ -15,7 +15,8 @@ export default class NamesForm extends Component {
         super(props);
         this.state = {
             league: ['2LK'],
-            teamsNames: ['UKS Huragan Wołomin ',
+            teamsNames: [
+                'UKS Huragan Wołomin ',
                 'AKS ZŁY',
                 'MPKK Sokołów S.A. Sokołów Podlaski',
                 'ŁKS Łódź ',
@@ -23,45 +24,47 @@ export default class NamesForm extends Component {
                 'Lider Pruszków ',
                 'KU AZS UMCS Lublin '
             ],
-            teamAnames: ['Natalia Adamus',
-                'King Asiedu', 
-                'Aleksandra Dzięciołowska', 
-                'Zuzanna Gortat', 
-                'Marta Kawczyńska', 
-                'Patrycja Kawczyńska', 
-                'Patrycja Kisiel', 
-                'Oliwia Książek', 
-                'Kornelia Łapińska', 
-                'Natalia Nowak', 
-                'Weronika Plewa', 
-                'Aleksandra Podskoczyj', 
-                'Karolina Podskoczyj', 
-                'Weronika Puchacz', 
-                'Kinga Rutkowska', 
-                'Julita Sadowska', 
-                'Kinga Sierakowska', 
-                'Maja Strugarek', 
-                'Julia Tomczak', 
-                'Maja Woźniak', 
+            teamAnames: [
+                'Natalia Adamus',
+                'King Asiedu',
+                'Aleksandra Dzięciołowska',
+                'Zuzanna Gortat',
+                'Marta Kawczyńska',
+                'Patrycja Kawczyńska',
+                'Patrycja Kisiel',
+                'Oliwia Książek',
+                'Kornelia Łapińska',
+                'Natalia Nowak',
+                'Weronika Plewa',
+                'Aleksandra Podskoczyj',
+                'Karolina Podskoczyj',
+                'Weronika Puchacz',
+                'Kinga Rutkowska',
+                'Julita Sadowska',
+                'Kinga Sierakowska',
+                'Maja Strugarek',
+                'Julia Tomczak',
+                'Maja Woźniak',
                 'Martyna Zdunek'],
-            teamBnames: ['Blanka Bernat',
-            'Paulina Bukowska', 
-            'Paulina Janczura', 
-            'Magdalena Jarkiewicz', 
-            'Agnieszka Jędrzejewska', 
-            'Inga Korczak', 
-            'Oliwia Kukulak', 
-            'Magdalena Kulińska', 
-            'Marta Lisiecka', 
-            'Zuzanna Niedziółka', 
-            'Paulina Olszak', 
-            'Heidi Paprocki', 
-            'Anna Przeździecka', 
-            'Toma Ralyte', 
-            'Olga Składanek', 
-            'Wiktoria Skuzińska', 
-            'Marta Stęplewska', 
-            'Patrycja Wróbel', ],
+            teamBnames: [
+                'Blanka Bernat',
+                'Paulina Bukowska',
+                'Paulina Janczura',
+                'Magdalena Jarkiewicz',
+                'Agnieszka Jędrzejewska',
+                'Inga Korczak',
+                'Oliwia Kukulak',
+                'Magdalena Kulińska',
+                'Marta Lisiecka',
+                'Zuzanna Niedziółka',
+                'Paulina Olszak',
+                'Heidi Paprocki',
+                'Anna Przeździecka',
+                'Toma Ralyte',
+                'Olga Składanek',
+                'Wiktoria Skuzińska',
+                'Marta Stęplewska',
+                'Patrycja Wróbel'],
             selectedNames: [],
             content: [],
             contentx: [],
@@ -102,15 +105,32 @@ export default class NamesForm extends Component {
                     />
 
                     {
-                        (() => ids.map(item => <ModalDropdown
-                            key={item}
-                            options={this.state.teamAnames}
-                            defaultValue='Pick player'
-                            textStyle={styles.textStyleName}
-                            style={styles.listContainerName}
-                            dropdownStyle={styles.dropdownStyleName}
-                            dropdownTextStyle={styles.dropdownTextStyleName}
-                        />))()
+                        (() => ids.map(item =>
+                            <View style={styles.nameContainer}>
+                                <ModalDropdown
+                                    key={item}
+                                    options={this.state.teamAnames}
+                                    defaultValue='Pick player'
+                                    textStyle={styles.textStyleName}
+                                    style={styles.listContainerName}
+                                    dropdownStyle={styles.dropdownStyleName}
+                                    dropdownTextStyle={styles.dropdownTextStyleName}
+                                />
+                                <NumericInput
+                                    type='plus-minus'
+                                    minValue={0}
+                                    maxValue={99}
+                                    iconSize={25}
+                                    iconStyle={{ color: 'white' }}
+                                    rightButtonBackgroundColor='#00a60b'
+                                    leftButtonBackgroundColor='#E56B70'
+                                    totalWidth={130}
+                                    totalHeight={40}
+                                />
+                            </View>
+
+
+                        ))()
                     }
 
 
@@ -126,15 +146,30 @@ export default class NamesForm extends Component {
                     />
 
                     {
-                        (() => ids.map(item => <ModalDropdown
-                            key={item}
-                            options={this.state.teamBnames}
-                            defaultValue='Pick player'
-                            textStyle={styles.textStyleName}
-                            style={styles.listContainerName}
-                            dropdownStyle={styles.dropdownStyleName}
-                            dropdownTextStyle={styles.dropdownTextStyleName}
-                        />))()
+                        (() => ids.map(item =>
+                            <View style={styles.nameContainer}>
+                                <ModalDropdown
+                                    key={item}
+                                    options={this.state.teamBnames}
+                                    defaultValue='Pick player'
+                                    textStyle={styles.textStyleName}
+                                    style={styles.listContainerName}
+                                    dropdownStyle={styles.dropdownStyleName}
+                                    dropdownTextStyle={styles.dropdownTextStyleName}
+                                />
+                                <NumericInput
+                                    type='plus-minus'
+                                    minValue={0}
+                                    maxValue={99}
+                                    iconSize={25}
+                                    iconStyle={{ color: 'white' }}
+                                    rightButtonBackgroundColor='#00a60b'
+                                    leftButtonBackgroundColor='#E56B70'
+                                    totalWidth={130}
+                                    totalHeight={40}
+                                />
+                            </View>
+                        ))()
                     }
 
                 </ScrollView>
@@ -147,11 +182,15 @@ export default class NamesForm extends Component {
 }
 
 const styles = StyleSheet.create({
+
     container: {
         backgroundColor: '#5c5b5a',
         height: '100%'
     },
-
+    nameContainer: {
+        flexDirection: 'row',
+        width: '100%',
+    },
     listContainerLeague: {
         backgroundColor: '#9e9b98'
     },
@@ -169,9 +208,10 @@ const styles = StyleSheet.create({
 
     listContainerName: {
         backgroundColor: '#c4b593',
+        flex: 1
     },
     textStyleName: {
-        fontSize: 20,
+        fontSize: 25,
         color: '#ffffff'
     },
     dropdownStyleName: {
