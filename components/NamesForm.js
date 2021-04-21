@@ -4,8 +4,11 @@ import ModalDropdown from 'react-native-modal-dropdown';
 import NumericInput from 'react-native-numeric-input'
 
 
-const ids = [
-    'id_01', 'id_02', 'id_03', 'id_04', 'id_05', 'id_06', 'id_07', 'id_08', 'id_09', 'id_010', 'id_011', 'id_012'
+const idsA = [
+    'a_01', 'a_02', 'a_03', 'a_04', 'a_05', 'a_06', 'a_07', 'a_08', 'a_09', 'a_010', 'a_011', 'a_012'
+]
+const idsB = [
+    'b_01', 'b_02', 'b_03', 'b_04', 'b_05', 'b_06', 'b_07', 'b_08', 'b_09', 'b_010', 'b_011', 'b_012'
 ]
 
 
@@ -65,19 +68,47 @@ export default class NamesForm extends Component {
                 'Wiktoria Skuzińska',
                 'Marta Stęplewska',
                 'Patrycja Wróbel'],
-            selectedNames: [],
-            content: [],
-            contentx: [],
+            teamA: [],
+            teambB: []
         }
     }
 
-    nameSelected = (index, value) => {
-        console.log('name: ', index, value)
+    nameSelected = (indexOfPlayer, playerName, idOfRow) => {
+        console.log('name: ', indexOfPlayer, playerName, idOfRow)
+        this.setState(state => {
+            
+            let data = state.teamA.filter((item) => item.name == playerName).map(({ id, name }) => ({ id, name }));
+            console.log('data: ', data);
+
+            if (data.length){
+                console.log('zawieram juz ten item')
+                
+            }
+
+            else {
+                console.log('nie zawieram tego itema')
+                const teamA = [...state.teamA, {
+                    'name': playerName,
+                    'id': idOfRow
+                }];
+                const teamAnames = state.teamAnames.filter((ii, jj) => playerName !== jj)
+                return {
+                    teamA,
+                    teamAnames
+                }
+            }
+        })
     }
 
-    multipleTags = (content) => {
-        console.log('name: ', content)
+    numberSelected = (value, item) => {
+        console.log('number: ', value, item)
     }
+
+
+    acceptButtonSelected = () => {
+        console.log('accept Button Selected')
+    }
+
 
     render() {
         return (
@@ -105,7 +136,7 @@ export default class NamesForm extends Component {
                     />
 
                     {
-                        (() => ids.map(item =>
+                        (() => idsA.map(item =>
                             <View style={styles.nameContainer}>
                                 <ModalDropdown
                                     key={item}
@@ -115,6 +146,7 @@ export default class NamesForm extends Component {
                                     style={styles.listContainerName}
                                     dropdownStyle={styles.dropdownStyleName}
                                     dropdownTextStyle={styles.dropdownTextStyleName}
+                                    onSelect={(index, value) => this.nameSelected(index, value, item)}
                                 />
                                 <NumericInput
                                     type='plus-minus'
@@ -126,6 +158,7 @@ export default class NamesForm extends Component {
                                     leftButtonBackgroundColor='#E56B70'
                                     totalWidth={130}
                                     totalHeight={40}
+                                    onChange={(value) => this.numberSelected(value, item)}
                                 />
                             </View>
 
@@ -146,7 +179,7 @@ export default class NamesForm extends Component {
                     />
 
                     {
-                        (() => ids.map(item =>
+                        (() => idsB.map(item =>
                             <View style={styles.nameContainer}>
                                 <ModalDropdown
                                     key={item}
@@ -173,7 +206,7 @@ export default class NamesForm extends Component {
                     }
 
                 </ScrollView>
-                <TouchableOpacity style={styles.acceptButton}>
+                <TouchableOpacity style={styles.acceptButton} onPress={() => this.acceptButtonSelected()}>
                     <Text style={styles.acceptText}>Accept</Text>
                 </TouchableOpacity>
             </View>
@@ -212,7 +245,8 @@ const styles = StyleSheet.create({
     },
     textStyleName: {
         fontSize: 25,
-        color: '#ffffff'
+        color: '#ffffff',
+        flex: 1
     },
     dropdownStyleName: {
         backgroundColor: '#c4b593',
