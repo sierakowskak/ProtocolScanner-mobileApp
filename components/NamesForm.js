@@ -69,29 +69,94 @@ export default class NamesForm extends Component {
                 'Marta Stęplewska',
                 'Patrycja Wróbel'],
             teamA: [],
-            teambB: []
+            teamB: [],
+            teamAName: '',
+            teamBName: '',
         }
     }
 
-    nameSelected = (indexOfPlayer, playerName, idOfRow) => {
-        console.log('name: ', indexOfPlayer, playerName, idOfRow)
+    teamANameSelected = (indexOfTeam, teamName) => {
         this.setState(state => {
-            
-            let data = state.teamA.filter((item) => item.name == playerName).map(({ id, name }) => ({ id, name }));
-            console.log('data: ', data);
 
-            if (data.length){
-                console.log('zawieram juz ten item')
-                
+            if (state.teamAName !== '') {
+
+                const teamsNames = state.teamsNames.map(name => (
+                    name === teamName ? state.teamAName : name
+                ))
+
+                const teamAName = teamName
+                return {
+                    teamsNames,
+                    teamAName
+                }
             }
 
             else {
-                console.log('nie zawieram tego itema')
+                const teamsNames = state.teamsNames.filter(item => teamName !== item)
+                const teamAName = teamName
+                return {
+                    teamsNames,
+                    teamAName
+                }
+            }
+
+
+        })
+    }
+
+    teamBNameSelected = (indexOfTeam, teamName) => {
+        this.setState(state => {
+
+            if (state.teamBName !== '') {
+
+                const teamsNames = state.teamsNames.map(name => (
+                    name === teamName ? state.teamBName : name
+                ))
+
+                const teamBName = teamName
+                return {
+                    teamsNames,
+                    teamBName
+                }
+            }
+
+            else {
+                const teamsNames = state.teamsNames.filter(item => teamName !== item)
+                const teamBName = teamName
+                return {
+                    teamsNames,
+                    teamBName
+                }
+            }
+
+
+        })
+    }
+
+    nameASelected = (indexOfPlayer, playerName, idOfRow) => {
+        this.setState(state => {
+
+            let data = state.teamA.filter((item) => item.id == idOfRow).map(({ id, name, index }) => ({ id, name, index }));
+
+            if (data.length) {
+                const teamA = state.teamA.map(item => (
+                    item.name === data[0].name ? { ...item, 'name': playerName } : item
+                ))
+                const teamAnames = [...state.teamAnames, data[0].name]
+                return {
+                    teamA,
+                    teamAnames
+                }
+            }
+
+            else {
                 const teamA = [...state.teamA, {
                     'name': playerName,
-                    'id': idOfRow
+                    'id': idOfRow,
+                    'index': indexOfPlayer,
+                    'nr': 0
                 }];
-                const teamAnames = state.teamAnames.filter((ii, jj) => playerName !== jj)
+                const teamAnames = state.teamAnames.filter(item => playerName !== item)
                 return {
                     teamA,
                     teamAnames
@@ -100,13 +165,71 @@ export default class NamesForm extends Component {
         })
     }
 
-    numberSelected = (value, item) => {
-        console.log('number: ', value, item)
+    nameBSelected = (indexOfPlayer, playerName, idOfRow) => {
+        this.setState(state => {
+
+            let data = state.teamB.filter((item) => item.id == idOfRow).map(({ id, name, index }) => ({ id, name, index }));
+
+            if (data.length) {
+                const teamB = state.teamB.map(item => (
+                    item.name === data[0].name ? { ...item, 'name': playerName } : item
+                ))
+                const teamBnames = [...state.teamBnames, data[0].name]
+                return {
+                    teamB,
+                    teamBnames
+                }
+            }
+
+            else {
+                console.log(' team b name selected data is empty', data)
+                const teamB = [...state.teamB, {
+                    'name': playerName,
+                    'id': idOfRow,
+                    'index': indexOfPlayer,
+                    'nr': 0
+                }];
+                const teamBnames = state.teamBnames.filter(item => playerName !== item)
+                return {
+                    teamB,
+                    teamBnames
+                }
+            }
+        })
+    }
+
+    numberASelected = (playerNumber, idOfRow) => {
+        this.setState(state => {
+            const teamA = state.teamA.map(item => (
+                item.id === idOfRow ? { ...item, 'nr': playerNumber } : item
+            ))
+            return {
+                teamA
+            }
+        })
+
+    }
+    numberBSelected = (playerNumber, idOfRow) => {
+        this.setState(state => {
+            const teamB = state.teamB.map(item => (
+                item.id === idOfRow ? { ...item, 'nr': playerNumber } : item
+            ))
+            return {
+                teamB
+            }
+        })
+
     }
 
 
     acceptButtonSelected = () => {
         console.log('accept Button Selected')
+        console.log(this.state.teamAName, this.state.teamA)
+        console.log(this.state.teamBName, this.state.teamB)
+    }
+
+    leagueSelected = () => {
+        console.log('leaguage selected')
     }
 
 
@@ -116,7 +239,7 @@ export default class NamesForm extends Component {
                 <ModalDropdown
                     options={this.state.league}
                     defaultValue='Pick league'
-                    onSelect={(index, value) => this.nameSelected(index, value)}
+                    onSelect={(index, value) => this.leagueSelected(index, value)}
                     textStyle={styles.textStyleLeague}
                     style={styles.listContainerLeague}
                     dropdownStyle={styles.dropdownStyleLeague}
@@ -125,9 +248,10 @@ export default class NamesForm extends Component {
                 />
                 <ScrollView>
                     <ModalDropdown
+                        key='teamA'
                         options={this.state.teamsNames}
                         defaultValue='Pick team'
-                        onSelect={(index, value) => this.nameSelected(index, value)}
+                        onSelect={(index, value) => this.teamANameSelected(index, value)}
                         textStyle={styles.textStyleTeam}
                         style={styles.listContainerTeam}
                         dropdownStyle={styles.dropdownStyleTeam}
@@ -137,16 +261,16 @@ export default class NamesForm extends Component {
 
                     {
                         (() => idsA.map(item =>
-                            <View style={styles.nameContainer}>
+                            <View key={item} style={styles.nameContainer}>
                                 <ModalDropdown
-                                    key={item}
+
                                     options={this.state.teamAnames}
                                     defaultValue='Pick player'
                                     textStyle={styles.textStyleName}
                                     style={styles.listContainerName}
                                     dropdownStyle={styles.dropdownStyleName}
                                     dropdownTextStyle={styles.dropdownTextStyleName}
-                                    onSelect={(index, value) => this.nameSelected(index, value, item)}
+                                    onSelect={(index, value) => this.nameASelected(index, value, item)}
                                 />
                                 <NumericInput
                                     type='plus-minus'
@@ -158,7 +282,7 @@ export default class NamesForm extends Component {
                                     leftButtonBackgroundColor='#E56B70'
                                     totalWidth={130}
                                     totalHeight={40}
-                                    onChange={(value) => this.numberSelected(value, item)}
+                                    onChange={(value) => this.numberASelected(value, item)}
                                 />
                             </View>
 
@@ -168,9 +292,10 @@ export default class NamesForm extends Component {
 
 
                     <ModalDropdown
+                        key='teamB'
                         options={this.state.teamsNames}
                         defaultValue='Pick team'
-                        onSelect={(index, value) => this.nameSelected(index, value)}
+                        onSelect={(index, value) => this.teamBNameSelected(index, value)}
                         textStyle={styles.textStyleTeam}
                         style={styles.listContainerTeam}
                         dropdownStyle={styles.dropdownStyleTeam}
@@ -180,15 +305,16 @@ export default class NamesForm extends Component {
 
                     {
                         (() => idsB.map(item =>
-                            <View style={styles.nameContainer}>
+                            <View key={item} style={styles.nameContainer}>
                                 <ModalDropdown
-                                    key={item}
+
                                     options={this.state.teamBnames}
                                     defaultValue='Pick player'
                                     textStyle={styles.textStyleName}
                                     style={styles.listContainerName}
                                     dropdownStyle={styles.dropdownStyleName}
                                     dropdownTextStyle={styles.dropdownTextStyleName}
+                                    onSelect={(index, value) => this.nameBSelected(index, value, item)}
                                 />
                                 <NumericInput
                                     type='plus-minus'
@@ -200,6 +326,7 @@ export default class NamesForm extends Component {
                                     leftButtonBackgroundColor='#E56B70'
                                     totalWidth={130}
                                     totalHeight={40}
+                                    onChange={(value) => this.numberBSelected(value, item)}
                                 />
                             </View>
                         ))()
