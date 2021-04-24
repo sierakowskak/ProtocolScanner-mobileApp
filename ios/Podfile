@@ -12,6 +12,8 @@ target 'BasketProtocolScanner' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-perspective-image-cropper', :path => '../node_modules/react-native-perspective-image-cropper'
+
   target 'BasketProtocolScannerTests' do
     inherit! :complete
     # Pods for testing
