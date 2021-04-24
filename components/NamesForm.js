@@ -223,7 +223,6 @@ export default class NamesForm extends Component {
 
 
     acceptButtonSelected = () => {
-        console.log('accept Button Selected')
         console.log(this.state.teamAName, this.state.teamA)
         console.log(this.state.teamBName, this.state.teamB)
     }

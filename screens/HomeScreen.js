@@ -22,6 +22,7 @@ export default class HomeScreen extends PureComponent {
             height: 400,
             cropping: false
         }).then(image => {
+            console.log('path: ', image.path)
             this.navigateToCustomCrop(image.path);
         })
             .catch(err => {
@@ -46,6 +47,9 @@ export default class HomeScreen extends PureComponent {
         this.props.navigation.navigate('NamesForm');
     }
 
+    // navigateToNewCamera = () => {
+    //     this.props.navigation.navigate('NewCamera');
+    // }
 
     render() {
         const { navigate } = this.props.navigation;
@@ -58,6 +62,7 @@ export default class HomeScreen extends PureComponent {
                     <TouchableOpacity onPress={() => this.takePhotoFromCamera()} style={styles.button}><Text style={styles.textIn}>Camera</Text></TouchableOpacity>
                     <TouchableOpacity onPress={() => this.choosePhotoFromGallery()} style={styles.button}><Text style={styles.textIn}>Pick photo</Text></TouchableOpacity>
                     <TouchableOpacity onPress={() => this.navigateToNamesForm()} style={styles.button}><Text style={styles.textIn}>Names</Text></TouchableOpacity>
+                    {/* <TouchableOpacity onPress={() => this.navigateToNewCamera()} style={styles.button}><Text style={styles.textIn}>New Camera</Text></TouchableOpacity> */}
                 </View>
             </View>
         )

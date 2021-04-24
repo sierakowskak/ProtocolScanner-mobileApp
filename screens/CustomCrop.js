@@ -22,7 +22,7 @@ export default class CropView extends PureComponent {
   }
 
   componentDidMount() {
-    if (this.props.route.params){
+    if (this.props.route.params) {
       let image = this.props.route.params;
       Image.getSize(image, (width, height) => {
         this.setState({
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
 
   },
   custom: {
-    top:'5%'
+    top: '5%'
   },
   buttonsContainer: {
     height: '10%',
