@@ -3,14 +3,23 @@ import * as React from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/EvilIcons';
 
-const SettingsButton = () => (
-    <TouchableOpacity style={{marginRight: 10}}>
-        <Icon
-            name="gear"
-            size={25}
-            color="white"
-        />
-    </TouchableOpacity>
-);
+export default class SettingsButton extends React.PureComponent {
 
-export default SettingsButton;
+    constructor(props) {
+        super(props);
+        this.state = {}
+    }
+
+    render() {
+        return (
+            <TouchableOpacity onPress={() => this.navigateToNames()} style={{ marginRight: 10 }}>
+                <Icon
+                    name="gear"
+                    size={25}
+                    color="white"
+                />
+            </TouchableOpacity>
+        )
+
+    }
+}
