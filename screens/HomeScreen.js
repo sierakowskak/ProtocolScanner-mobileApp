@@ -1,4 +1,3 @@
-
 import React, { PureComponent, useState } from 'react';
 import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
 // import SettingsButton from '../components/SettingsButton';
@@ -51,6 +50,18 @@ export default class HomeScreen extends PureComponent {
     //     this.props.navigation.navigate('NewCamera');
     // }
 
+    performGet = () => {
+        return fetch('https://protocol-scaner-server.herokuapp.com/polls/')
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json);
+                return json.movies;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         return (
@@ -62,7 +73,7 @@ export default class HomeScreen extends PureComponent {
                     <TouchableOpacity onPress={() => this.takePhotoFromCamera()} style={styles.button}><Text style={styles.textIn}>Camera</Text></TouchableOpacity>
                     <TouchableOpacity onPress={() => this.choosePhotoFromGallery()} style={styles.button}><Text style={styles.textIn}>Pick photo</Text></TouchableOpacity>
                     <TouchableOpacity onPress={() => this.navigateToNamesForm()} style={styles.button}><Text style={styles.textIn}>Names</Text></TouchableOpacity>
-                    {/* <TouchableOpacity onPress={() => this.navigateToNewCamera()} style={styles.button}><Text style={styles.textIn}>New Camera</Text></TouchableOpacity> */}
+                    <TouchableOpacity onPress={() => this.performGet()} style={styles.button}><Text style={styles.textIn}>Perform Get</Text></TouchableOpacity>
                 </View>
             </View>
         )
