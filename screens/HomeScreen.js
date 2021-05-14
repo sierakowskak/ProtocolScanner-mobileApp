@@ -1,8 +1,6 @@
-import React, { PureComponent, useState } from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity } from 'react-native';
-// import SettingsButton from '../components/SettingsButton';
+import React, { PureComponent } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
-// import RNFetchBlob from 'rn-fetch-blob'
 
 export default class HomeScreen extends PureComponent {
 
@@ -49,10 +47,6 @@ export default class HomeScreen extends PureComponent {
     navigateToSummary = () => {
         this.props.navigation.navigate('SummaryScreen');
     }
-
-    // navigateToNewCamera = () => {
-    //     this.props.navigation.navigate('NewCamera');
-    // }
 
     performGet = () => {
         return fetch('https://protocol-scaner-server.herokuapp.com/polls/game_data')

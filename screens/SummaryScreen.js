@@ -1,6 +1,6 @@
-import React, { PureComponent, useState } from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { Table, TableWrapper, Row, Rows, Col, Cell } from 'react-native-table-component';
+import React, { PureComponent } from 'react';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Cell, Row, Table } from 'react-native-table-component';
 
 export default class SummaryScreen extends PureComponent {
 
@@ -218,7 +218,7 @@ export default class SummaryScreen extends PureComponent {
                                         player.number,
                                         player.points,
                                         player.three_throw,
-                                        player.free_made + "/" + [player.free_made, player.free_miss].reduce((total, currentValue) => total = total += currentValue, 0) 
+                                        player.free_made + "/" + [player.free_made, player.free_miss].reduce((total, currentValue) => total = total += currentValue, 0)
                                     ]}
                                     flexArr={[2, 1, 1, 1, 1, 1]}
                                     style={[styles.row, index % 2 && { backgroundColor: '#b5b5b5' }]}
@@ -241,7 +241,7 @@ export default class SummaryScreen extends PureComponent {
                                         player.number,
                                         player.points,
                                         player.three_throw,
-                                        player.free_made + "/" + [player.free_made, player.free_miss].reduce((total, currentValue) => total = total += currentValue, 0) 
+                                        player.free_made + "/" + [player.free_made, player.free_miss].reduce((total, currentValue) => total = total += currentValue, 0)
                                     ]}
                                     flexArr={[2, 1, 1, 1, 1, 1]}
                                     style={[styles.row, index % 2 && { backgroundColor: '#b5b5b5' }]}
