@@ -16,6 +16,7 @@ import HomeScreen from './screens/HomeScreen';
 import SettingsButton from './components/SettingsButton';
 import CustomCrop from './screens/CustomCrop';
 import CroppedImageScreen from './screens/CroppedImageScreen';
+import SummaryScreen from './screens/SummaryScreen';
 import NamesForm from './components/NamesForm';
 // import CameraScreen from './screens/CameraScreen'
 
@@ -49,6 +50,7 @@ const App = () => {
           <Stack.Screen name="NamesForm" component={NamesForm} />
           <Stack.Screen name="CustomCrop" component={CustomCrop} />
           <Stack.Screen name="CroppedImageScreen" component={CroppedImageScreen} />
+          <Stack.Screen name="SummaryScreen" component={SummaryScreen} />
           {/* <Stack.Screen name="NewCamera" component={CameraScreen} /> */}
         </Stack.Navigator>
       </NavigationContainer>
