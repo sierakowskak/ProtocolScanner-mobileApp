@@ -1,7 +1,6 @@
 
-import CustomCrop from "react-native-perspective-image-cropper";
-import React, { Component, PureComponent } from 'react';
-import { View, Text, Button, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React, { PureComponent } from 'react';
+import { Image, StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 
 
 export default class CroppedImageScreen extends PureComponent {
@@ -10,29 +9,28 @@ export default class CroppedImageScreen extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            image: ''
         }
     }
 
-    componentDidMount() {
-        // let image = this.props.route.params;
-        let image = 'data:image/png;base64,' + this.props.route.params;
-        // console.log(image);
-        this.setState({
-            // image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAzCAYAAAA6oTAqAAAAEXRFWHRTb2Z0d2FyZQBwbmdjcnVzaEB1SfMAAABQSURBVGje7dSxCQBACARB+2/ab8BEeQNhFi6WSYzYLYudDQYGBgYGBgYGBgYGBgYGBgZmcvDqYGBgmhivGQYGBgYGBgYGBgYGBgYGBgbmQw+P/eMrC5UTVAAAAABJRU5ErkJggg==',
-            image: image 
-        })
+    goToNameForm = () => {
+        this.props.navigation.navigate('NamesForm');
     }
 
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.mainContainer}>
-                {this.state.image !== '' &&
-                    <Image
-                        style={styles.image}
-                        source={{ uri: this.state.image }}
-                    />
-                }
+                <View style={styles.imageContainer}>
+                    {this.state.image !== '' &&
+                        <Image
+                            style={styles.image}
+                            source={require('./cut_protocol.jpg')}
+                        />
+                    }
+                </View>
+                <TouchableOpacity onPress={() => this.goToNameForm()} style={styles.acceptButton}>
+                    <Text style={styles.acceptText}>Accept</Text>
+                </TouchableOpacity>
             </View>
         );
     }
@@ -43,10 +41,33 @@ export default class CroppedImageScreen extends PureComponent {
 const styles = StyleSheet.create({
     mainContainer: {
         height: '100%',
-        backgroundColor: 'red'
+        backgroundColor: '#9e9b98',
+        flexDirection: 'column',
     },
-    image:{
-        height:'100%',
-        width:'100%'
+    imageContainer: {
+        height: '85%',
+        width:'90%',
+        marginLeft:'5%',
+        marginTop:'5%',
+        backgroundColor: 'red',
+        
+    },
+    image: {
+        height: '100%',
+        width: '100%'
+    },
+    acceptButton: {
+        width: '100%',
+        height: 60,
+        backgroundColor: 'green',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 15,
+        marginBottom:0,
+        borderRadius: 5
+    },
+    acceptText: {
+        fontSize: 25,
+        color: '#ffffff'
     }
 })

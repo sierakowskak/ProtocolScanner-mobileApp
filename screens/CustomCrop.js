@@ -55,15 +55,17 @@ export default class CropView extends PureComponent {
   }
 
   crop() {
-    this.customCrop.crop();
+    // this.customCrop.crop();
+    this.props.navigation.navigate('CroppedImageScreen');
     console.log('crop function')
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.mainContainer}>
         <View style={styles.cropContainer}>
-          <View style={styles.custom}>
+          {/* <View style={styles.custom}> */}
             {this.state.imageHeight !== 0 && this.state.imageWidth !== 0 && this.state.initialImage &&
               <CustomCrop
                 updateImage={this.updateImage.bind(this)}
@@ -78,7 +80,7 @@ export default class CropView extends PureComponent {
                 enablePanStrict={false}
               />
             }
-          </View>
+          {/* </View> */}
 
         </View>
 
@@ -107,16 +109,13 @@ export default class CropView extends PureComponent {
 const styles = StyleSheet.create({
   mainContainer: {
     height: '100%',
-
+    backgroundColor: 'gray',
   },
   cropContainer: {
-    height: '90%',
+    height: '85%',
     backgroundColor: 'gray',
     flexDirection: 'column',
-
-  },
-  custom: {
-    top: '5%'
+    marginTop:'5%'
   },
   buttonsContainer: {
     height: '10%',
@@ -127,6 +126,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around'
   },
   cropButton: {
-    top: '2%'
+    top: '5%'
   }
 })

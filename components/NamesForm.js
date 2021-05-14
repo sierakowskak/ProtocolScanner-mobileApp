@@ -225,6 +225,7 @@ export default class NamesForm extends Component {
     acceptButtonSelected = () => {
         console.log(this.state.teamAName, this.state.teamA)
         console.log(this.state.teamBName, this.state.teamB)
+        this.props.navigation.navigate('SummaryScreen');
     }
 
     leagueSelected = () => {
@@ -233,6 +234,7 @@ export default class NamesForm extends Component {
 
 
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
                 <ModalDropdown
@@ -351,7 +353,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     listContainerLeague: {
-        backgroundColor: '#9e9b98'
+        backgroundColor: '#f59b42'
     },
     textStyleLeague: {
         fontSize: 30,
@@ -366,7 +368,7 @@ const styles = StyleSheet.create({
     },
 
     listContainerName: {
-        backgroundColor: '#c4b593',
+        backgroundColor: '#c7c7c7',
         flex: 1
     },
     textStyleName: {
@@ -383,7 +385,7 @@ const styles = StyleSheet.create({
     },
 
     listContainerTeam: {
-        backgroundColor: '#b3ab9a',
+        backgroundColor: '#ffb369',
         marginTop: 10
     },
     textStyleTeam: {

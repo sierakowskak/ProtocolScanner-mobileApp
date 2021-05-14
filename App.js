@@ -39,11 +39,42 @@ const App = () => {
           />
 
 
-          <Stack.Screen name="NamesForm" component={NamesForm} />
-          <Stack.Screen name="CustomCrop" component={CustomCrop} />
-          <Stack.Screen name="CroppedImageScreen" component={CroppedImageScreen} />
-          <Stack.Screen name="SummaryScreen" component={SummaryScreen} />
-          {/* <Stack.Screen name="NewCamera" component={CameraScreen} /> */}
+          <Stack.Screen
+            name="NamesForm"
+            component={NamesForm}
+            options={{
+              title: '',
+              headerStyle: { backgroundColor: '#555555' },
+              headerTitleStyle: { fontSize: 10 },
+            }}
+          />
+          <Stack.Screen
+            name="CustomCrop"
+            component={CustomCrop}
+            options={{
+              title: '',
+              headerStyle: { backgroundColor: '#555555' },
+              headerTitleStyle: { fontSize: 10 },
+            }}
+          />
+          <Stack.Screen
+            name="CroppedImageScreen"
+            component={CroppedImageScreen}
+            options={{
+              title: '',
+              headerStyle: { backgroundColor: '#555555' },
+              headerTitleStyle: { fontSize: 10 },
+            }}
+          />
+          <Stack.Screen
+            name="SummaryScreen"
+            component={SummaryScreen}
+            options={{
+              title: '',
+              headerStyle: { backgroundColor: '#555555' },
+              headerTitleStyle: { fontSize: 10 },
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
 
