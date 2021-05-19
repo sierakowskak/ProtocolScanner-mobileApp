@@ -20,7 +20,7 @@ export default class CroppedImageScreen extends PureComponent {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.mainContainer}>
-                <View style={styles.imageContainer}>
+                <View style={styles.imageContainer} >
                     {this.state.image !== '' &&
                         <Image
                             style={styles.image}

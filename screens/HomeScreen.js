@@ -10,7 +10,7 @@ export default class HomeScreen extends PureComponent {
     }
 
     navigateToCustomCrop = data => {
-        this.props.navigation.navigate('CustomCrop', data);
+        this.props.navigation.navigate('CustomRotate', data);
     }
 
     takePhotoFromCamera = () => {
@@ -39,14 +39,6 @@ export default class HomeScreen extends PureComponent {
                 console.log(' Error fetching images from gallery ', err);
             });
     }
-
-    // navigateToNamesForm = () => {
-    //     this.props.navigation.navigate('NamesForm');
-    // }
-
-    // navigateToSummary = () => {
-    //     this.props.navigation.navigate('SummaryScreen');
-    // }
 
     performGet = () => {
         return fetch('https://protocol-scaner-server.herokuapp.com/polls/game_data')

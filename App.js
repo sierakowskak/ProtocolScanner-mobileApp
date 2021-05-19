@@ -6,11 +6,10 @@ import NamesForm from './components/NamesForm';
 import SettingsButton from './components/SettingsButton';
 import CroppedImageScreen from './screens/CroppedImageScreen';
 import CustomCrop from './screens/CustomCrop';
+import CustomRotate from './screens/CustomRotate';
 import HomeScreen from './screens/HomeScreen';
 import SummaryScreen from './screens/SummaryScreen';
 
-
-// import CameraScreen from './screens/CameraScreen'
 
 const Stack = createStackNavigator();
 
@@ -51,6 +50,15 @@ const App = () => {
           <Stack.Screen
             name="CustomCrop"
             component={CustomCrop}
+            options={{
+              title: '',
+              headerStyle: { backgroundColor: '#555555' },
+              headerTitleStyle: { fontSize: 10 },
+            }}
+          />
+          <Stack.Screen
+            name="CustomRotate"
+            component={CustomRotate}
             options={{
               title: '',
               headerStyle: { backgroundColor: '#555555' },
