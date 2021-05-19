@@ -45,12 +45,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     imageContainer: {
-        height: '85%',
-        width:'90%',
-        marginLeft:'5%',
-        marginTop:'5%',
-        backgroundColor: 'red',
-        
+        height: '80%',
+        width:'95%',
+        marginLeft:'2.5%',
+        marginTop:'10%',
     },
     image: {
         height: '100%',
@@ -62,9 +60,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'green',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 15,
-        marginBottom:0,
-        borderRadius: 5
+        borderRadius: 5,
+        position: 'absolute',
+        bottom: 0,
+        left:0
     },
     acceptText: {
         fontSize: 25,

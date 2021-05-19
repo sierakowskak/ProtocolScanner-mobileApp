@@ -32,8 +32,8 @@ export default class CropView extends PureComponent {
           rectangleCoordinates: {
             topLeft: { x: width * 0.2, y: height * 0.2 },
             topRight: { x: width * 0.8, y: height * 0.2 },
-            bottomLeft: { x: width * 0.2, y: height * 0.8 },
-            bottomRight: { x: width * 0.8, y: height * 0.8 }
+            bottomLeft: { x: width * 0.2, y: height * 0.7 },
+            bottomRight: { x: width * 0.8, y: height * 0.7 }
           }
         });
       });
@@ -115,7 +115,8 @@ const styles = StyleSheet.create({
     height: '85%',
     backgroundColor: 'gray',
     flexDirection: 'column',
-    marginTop:'5%'
+    marginTop:'5%',
+    marginBottom: '5%'
   },
   buttonsContainer: {
     height: '10%',
