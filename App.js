@@ -22,7 +22,7 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen
-            name="Home"
+            name="HomeScreen"
             component={HomeScreen}
             options={{
               title: '',

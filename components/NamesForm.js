@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Alert, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert, ScrollView, ActivityIndicator } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
 import NumericInput from 'react-native-numeric-input'
 
@@ -17,6 +17,7 @@ export default class NamesForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: false,
             league: ['2LK'],
             teamsNames: [
                 'UKS Huragan Wołomin ',
@@ -223,9 +224,13 @@ export default class NamesForm extends Component {
 
 
     acceptButtonSelected = () => {
-        console.log(this.state.teamAName, this.state.teamA)
-        console.log(this.state.teamBName, this.state.teamB)
-        this.props.navigation.navigate('SummaryScreen');
+        this.setState({loading: true});
+        setTimeout(() => {
+            this.setState({loading: false});
+            console.log(this.state.teamAName, this.state.teamA)
+            console.log(this.state.teamBName, this.state.teamB)
+            this.props.navigation.navigate('SummaryScreen');
+        }, 2000)
     }
 
     leagueSelected = () => {
@@ -337,6 +342,12 @@ export default class NamesForm extends Component {
                 <TouchableOpacity style={styles.acceptButton} onPress={() => this.acceptButtonSelected()}>
                     <Text style={styles.acceptText}>Accept</Text>
                 </TouchableOpacity>
+                {this.state.loading &&
+                    <View style={styles.loading}>
+                        <ActivityIndicator size={200} color="#ffa200"/>
+                        
+                    </View>
+                }
             </View>
         );
     }
@@ -410,6 +421,14 @@ const styles = StyleSheet.create({
     acceptText: {
         fontSize: 25,
         color: '#ffffff'
-    }
-
+    },
+    loading: {
+        position: 'absolute',
+        left: 50,
+        right: 50,
+        top: 50,
+        bottom: 50,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
 });

@@ -1,6 +1,6 @@
 import CustomCrop from "react-native-perspective-image-cropper";
 import React, { PureComponent } from 'react';
-import { View, StyleSheet, TouchableOpacity, Image, Dimensions, Text } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image, Dimensions, Text, ActivityIndicator } from 'react-native';
 import RNFS from 'react-native-fs';
 import Icon from 'react-native-vector-icons/EvilIcons';
 
@@ -26,7 +26,7 @@ export default class CropView extends PureComponent {
         bottomLeft: { x: 0, y: 0 }
       },
       pressStatus: false,
-
+      spinWheel: false,
     }
   }
 
@@ -47,10 +47,10 @@ export default class CropView extends PureComponent {
 
               // imageWidth: windowWidth,
               // imageHeight: windowHeight,
-    
+
               imageWidth: width,
               imageHeight: height * 0.80,
-    
+
               initialImage: image,
               rectangleCoordinates: {
                 topLeft: { x: width * 0.2, y: height * 0.2 },
@@ -60,7 +60,7 @@ export default class CropView extends PureComponent {
               }
             });
           });
-        
+
       });
     }
   }
@@ -85,7 +85,7 @@ export default class CropView extends PureComponent {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.mainContainer}>
-        <View style={this.state.pressStatus ? styles.cropContainerAfterClick : styles.cropContainer}> 
+        <View style={this.state.pressStatus ? styles.cropContainerAfterClick : styles.cropContainer}>
           {/* <View style={styles.custom}> */}
           {this.state.imageHeight !== 0 && this.state.imageWidth !== 0 && this.state.initialImage &&
             <CustomCrop
@@ -99,13 +99,12 @@ export default class CropView extends PureComponent {
               overlayStrokeColor="rgba(68, 135, 245, 1)"
               handlerColor="rgba(68, 135, 245, 1)"
               enablePanStrict={false}
-              resizeMode={'contain'}
             />
           }
           {/* </View> */}
 
         </View>
-
+        
         <TouchableOpacity style={styles.acceptButton} onPress={this.crop.bind(this)}>
           <Text style={styles.acceptText}>Accept</Text>
         </TouchableOpacity>
