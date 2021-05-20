@@ -11,6 +11,7 @@ const idsB = [
     'b_01', 'b_02', 'b_03', 'b_04', 'b_05', 'b_06', 'b_07', 'b_08', 'b_09', 'b_010', 'b_011', 'b_012'
 ]
 
+const teamsSquads = require('../data/teamsSquads.json')
 
 export default class NamesForm extends Component {
 
@@ -19,56 +20,9 @@ export default class NamesForm extends Component {
         this.state = {
             loading: false,
             league: ['2LK'],
-            teamsNames: [
-                'UKS Huragan Wołomin ',
-                'AKS ZŁY',
-                'MPKK Sokołów S.A. Sokołów Podlaski',
-                'ŁKS Łódź ',
-                'SMS PZKosz II Łomianki ',
-                'Lider Pruszków ',
-                'KU AZS UMCS Lublin '
-            ],
-            teamAnames: [
-                'Natalia Adamus',
-                'King Asiedu',
-                'Aleksandra Dzięciołowska',
-                'Zuzanna Gortat',
-                'Marta Kawczyńska',
-                'Patrycja Kawczyńska',
-                'Patrycja Kisiel',
-                'Oliwia Książek',
-                'Kornelia Łapińska',
-                'Natalia Nowak',
-                'Weronika Plewa',
-                'Aleksandra Podskoczyj',
-                'Karolina Podskoczyj',
-                'Weronika Puchacz',
-                'Kinga Rutkowska',
-                'Julita Sadowska',
-                'Kinga Sierakowska',
-                'Maja Strugarek',
-                'Julia Tomczak',
-                'Maja Woźniak',
-                'Martyna Zdunek'],
-            teamBnames: [
-                'Blanka Bernat',
-                'Paulina Bukowska',
-                'Paulina Janczura',
-                'Magdalena Jarkiewicz',
-                'Agnieszka Jędrzejewska',
-                'Inga Korczak',
-                'Oliwia Kukulak',
-                'Magdalena Kulińska',
-                'Marta Lisiecka',
-                'Zuzanna Niedziółka',
-                'Paulina Olszak',
-                'Heidi Paprocki',
-                'Anna Przeździecka',
-                'Toma Ralyte',
-                'Olga Składanek',
-                'Wiktoria Skuzińska',
-                'Marta Stęplewska',
-                'Patrycja Wróbel'],
+            teamsNames: teamsSquads.teamsNames,
+            teamAnames: teamsSquads.teamAnames,
+            teamBnames:  teamsSquads.teamCnames,
             teamA: [],
             teamB: [],
             teamAName: '',
@@ -183,7 +137,6 @@ export default class NamesForm extends Component {
             }
 
             else {
-                console.log(' team b name selected data is empty', data)
                 const teamB = [...state.teamB, {
                     'name': playerName,
                     'id': idOfRow,

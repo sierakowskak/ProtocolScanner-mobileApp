@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { LogBox, StyleSheet } from 'react-native';
 import NamesForm from './components/NamesForm';
 import SettingsButton from './components/SettingsButton';
 import CroppedImageScreen from './screens/CroppedImageScreen';
@@ -9,7 +9,8 @@ import CustomCrop from './screens/CustomCrop';
 import CustomRotate from './screens/CustomRotate';
 import HomeScreen from './screens/HomeScreen';
 import SummaryScreen from './screens/SummaryScreen';
-
+// console.disableYellowBox = true;
+LogBox.ignoreLogs(['Warning: ...'])
 
 const Stack = createStackNavigator();
 
