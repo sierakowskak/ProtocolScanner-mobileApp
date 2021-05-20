@@ -17,8 +17,8 @@ export default class CropView extends PureComponent {
       imageHeight: 0,
       initialImage: "",
       currentAngle: 0,
-      width: 150,
-      height: 240,
+      width: 250,
+      height: 500,
       rectangleCoordinates: {
         topLeft: { x: 0, y: 0 },
         topRight: { x: 0, y: 0 },
@@ -45,11 +45,8 @@ export default class CropView extends PureComponent {
             // console.log(res);
             this.setState({
 
-              // imageWidth: windowWidth,
-              // imageHeight: windowHeight,
-
               imageWidth: width,
-              imageHeight: height * 0.80,
+              imageHeight: height,
 
               initialImage: image,
               rectangleCoordinates: {
@@ -85,8 +82,7 @@ export default class CropView extends PureComponent {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.mainContainer}>
-        <View style={this.state.pressStatus ? styles.cropContainerAfterClick : styles.cropContainer}>
-          {/* <View style={styles.custom}> */}
+        <View style={styles.cropContainer}>
           {this.state.imageHeight !== 0 && this.state.imageWidth !== 0 && this.state.initialImage &&
             <CustomCrop
               updateImage={this.updateImage.bind(this)}
@@ -101,10 +97,9 @@ export default class CropView extends PureComponent {
               enablePanStrict={false}
             />
           }
-          {/* </View> */}
 
         </View>
-        
+
         <TouchableOpacity style={styles.acceptButton} onPress={this.crop.bind(this)}>
           <Text style={styles.acceptText}>Accept</Text>
         </TouchableOpacity>
@@ -119,20 +114,13 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: 'gray',
   },
-  custom: {
-    height: '85%',
-    width: '100%',
-    backgroundColor: 'red',
-    resizeMode: 'contain',
-  },
   cropContainer: {
     height: '85%',
-    backgroundColor: 'gray',
     flexDirection: 'column',
-    marginTop: '5%',
+    marginTop: '40%',
     marginBottom: '5%',
-    backgroundColor: 'red',
-    flex: 6
+    backgroundColor: 'gray',
+    flex: 6,
   },
   acceptButton: {
     width: '100%',

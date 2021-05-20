@@ -27,6 +27,7 @@ export default class CroppedImageScreen extends PureComponent {
                     {this.state.image !== '' &&
                         <Image
                             style={styles.image}
+                            resizeMode={'contain'}
                             source={require('./cut_protocol.jpg')}
                         />
                     }
@@ -57,7 +58,8 @@ const styles = StyleSheet.create({
     },
     image: {
         height: '100%',
-        width: '100%'
+        width: '100%',
+        alignSelf: 'center'
     },
     acceptButton: {
         width: '100%',
