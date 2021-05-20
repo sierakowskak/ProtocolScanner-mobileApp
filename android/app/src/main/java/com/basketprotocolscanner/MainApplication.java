@@ -6,6 +6,9 @@ import android.util.Log;
 
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.rnfs.RNFSPackage;
+import io.codebakery.imagerotate.ImageRotatePackage;
+import io.codebakery.imagerotate.ImageRotatePackage;
 import fr.michaelvilleneuve.customcrop.RNCustomCropPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;

@@ -6,11 +6,10 @@ import NamesForm from './components/NamesForm';
 import SettingsButton from './components/SettingsButton';
 import CroppedImageScreen from './screens/CroppedImageScreen';
 import CustomCrop from './screens/CustomCrop';
+import CustomRotate from './screens/CustomRotate';
 import HomeScreen from './screens/HomeScreen';
 import SummaryScreen from './screens/SummaryScreen';
 
-
-// import CameraScreen from './screens/CameraScreen'
 
 const Stack = createStackNavigator();
 
@@ -23,7 +22,7 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen
-            name="Home"
+            name="HomeScreen"
             component={HomeScreen}
             options={{
               title: '',
@@ -39,11 +38,51 @@ const App = () => {
           />
 
 
-          <Stack.Screen name="NamesForm" component={NamesForm} />
-          <Stack.Screen name="CustomCrop" component={CustomCrop} />
-          <Stack.Screen name="CroppedImageScreen" component={CroppedImageScreen} />
-          <Stack.Screen name="SummaryScreen" component={SummaryScreen} />
-          {/* <Stack.Screen name="NewCamera" component={CameraScreen} /> */}
+          <Stack.Screen
+            name="NamesForm"
+            component={NamesForm}
+            options={{
+              title: '',
+              headerStyle: { backgroundColor: '#555555' },
+              headerTitleStyle: { fontSize: 10 },
+            }}
+          />
+          <Stack.Screen
+            name="CustomCrop"
+            component={CustomCrop}
+            options={{
+              title: '',
+              headerStyle: { backgroundColor: '#555555' },
+              headerTitleStyle: { fontSize: 10 },
+            }}
+          />
+          <Stack.Screen
+            name="CustomRotate"
+            component={CustomRotate}
+            options={{
+              title: '',
+              headerStyle: { backgroundColor: '#555555' },
+              headerTitleStyle: { fontSize: 10 },
+            }}
+          />
+          <Stack.Screen
+            name="CroppedImageScreen"
+            component={CroppedImageScreen}
+            options={{
+              title: '',
+              headerStyle: { backgroundColor: '#555555' },
+              headerTitleStyle: { fontSize: 10 },
+            }}
+          />
+          <Stack.Screen
+            name="SummaryScreen"
+            component={SummaryScreen}
+            options={{
+              title: '',
+              headerStyle: { backgroundColor: '#555555' },
+              headerTitleStyle: { fontSize: 10 },
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
 

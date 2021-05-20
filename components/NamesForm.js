@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Alert, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert, ScrollView, ActivityIndicator } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
 import NumericInput from 'react-native-numeric-input'
 
@@ -17,6 +17,7 @@ export default class NamesForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: false,
             league: ['2LK'],
             teamsNames: [
                 'UKS Huragan Wołomin ',
@@ -223,8 +224,13 @@ export default class NamesForm extends Component {
 
 
     acceptButtonSelected = () => {
-        console.log(this.state.teamAName, this.state.teamA)
-        console.log(this.state.teamBName, this.state.teamB)
+        this.setState({loading: true});
+        setTimeout(() => {
+            this.setState({loading: false});
+            console.log(this.state.teamAName, this.state.teamA)
+            console.log(this.state.teamBName, this.state.teamB)
+            this.props.navigation.navigate('SummaryScreen');
+        }, 2000)
     }
 
     leagueSelected = () => {
@@ -233,6 +239,7 @@ export default class NamesForm extends Component {
 
 
     render() {
+        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
                 <ModalDropdown
@@ -335,6 +342,12 @@ export default class NamesForm extends Component {
                 <TouchableOpacity style={styles.acceptButton} onPress={() => this.acceptButtonSelected()}>
                     <Text style={styles.acceptText}>Accept</Text>
                 </TouchableOpacity>
+                {this.state.loading &&
+                    <View style={styles.loading}>
+                        <ActivityIndicator size={200} color="#ffa200"/>
+                        
+                    </View>
+                }
             </View>
         );
     }
@@ -351,7 +364,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     listContainerLeague: {
-        backgroundColor: '#9e9b98'
+        backgroundColor: '#f59b42'
     },
     textStyleLeague: {
         fontSize: 30,
@@ -366,7 +379,7 @@ const styles = StyleSheet.create({
     },
 
     listContainerName: {
-        backgroundColor: '#c4b593',
+        backgroundColor: '#c7c7c7',
         flex: 1
     },
     textStyleName: {
@@ -383,7 +396,7 @@ const styles = StyleSheet.create({
     },
 
     listContainerTeam: {
-        backgroundColor: '#b3ab9a',
+        backgroundColor: '#ffb369',
         marginTop: 10
     },
     textStyleTeam: {
@@ -408,6 +421,14 @@ const styles = StyleSheet.create({
     acceptText: {
         fontSize: 25,
         color: '#ffffff'
-    }
-
+    },
+    loading: {
+        position: 'absolute',
+        left: 50,
+        right: 50,
+        top: 50,
+        bottom: 50,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
 });

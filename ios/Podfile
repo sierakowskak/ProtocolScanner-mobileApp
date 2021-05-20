@@ -14,6 +14,10 @@ target 'BasketProtocolScanner' do
 
   pod 'react-native-perspective-image-cropper', :path => '../node_modules/react-native-perspective-image-cropper'
 
+  pod 'RNImageRotate', :path => '../node_modules/react-native-image-rotate'
+
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
   target 'BasketProtocolScannerTests' do
     inherit! :complete
     # Pods for testing

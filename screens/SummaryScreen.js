@@ -199,6 +199,11 @@ export default class SummaryScreen extends PureComponent {
         }
     }
 
+    goToHomeScreen= () => {
+        this.props.navigation.navigate('HomeScreen');
+
+    }
+
 
     render() {
         const { navigate } = this.props.navigation;
@@ -252,7 +257,7 @@ export default class SummaryScreen extends PureComponent {
                     </Table>
                 </View>
 
-                <TouchableOpacity style={styles.acceptButton}>
+                <TouchableOpacity style={styles.acceptButton} onPress={() => this.goToHomeScreen()} >
                     <Text style={styles.acceptText}>Accept</Text>
                 </TouchableOpacity>
             </ScrollView>

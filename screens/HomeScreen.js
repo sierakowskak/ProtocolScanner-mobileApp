@@ -10,7 +10,7 @@ export default class HomeScreen extends PureComponent {
     }
 
     navigateToCustomCrop = data => {
-        this.props.navigation.navigate('CustomCrop', data);
+        this.props.navigation.navigate('CustomRotate', data);
     }
 
     takePhotoFromCamera = () => {
@@ -40,14 +40,6 @@ export default class HomeScreen extends PureComponent {
             });
     }
 
-    navigateToNamesForm = () => {
-        this.props.navigation.navigate('NamesForm');
-    }
-
-    navigateToSummary = () => {
-        this.props.navigation.navigate('SummaryScreen');
-    }
-
     performGet = () => {
         return fetch('https://protocol-scaner-server.herokuapp.com/polls/game_data')
             .then((response) => response.json())
@@ -70,9 +62,7 @@ export default class HomeScreen extends PureComponent {
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity onPress={() => this.takePhotoFromCamera()} style={styles.button}><Text style={styles.textIn}>Camera</Text></TouchableOpacity>
                     <TouchableOpacity onPress={() => this.choosePhotoFromGallery()} style={styles.button}><Text style={styles.textIn}>Pick photo</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.navigateToNamesForm()} style={styles.button}><Text style={styles.textIn}>Names</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.performGet()} style={styles.button}><Text style={styles.textIn}>Perform Get</Text></TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.navigateToSummary()} style={styles.button}><Text style={styles.textIn}>Summary</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.button}><Text style={styles.textIn}>Log in</Text></TouchableOpacity>
                 </View>
             </View>
         )
@@ -103,7 +93,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         bottom: 0,
         backgroundColor: '#9e9b98',
-        height: '60%',
+        height: '50%',
         width: '100%'
     },
     textIn: {
